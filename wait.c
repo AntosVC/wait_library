@@ -105,12 +105,12 @@ void wait_ms(uint32_t ms)
         while(1)
         {
             counter++;
-            COM_REG = 2000;
-            SET_PRESCALER_8;
+            COM_REG = 250;
+            SET_PRESCALER_64;
     
             while(!(TIFR_REG & (1 << INTERUPT_FLAG)));
 
-            UN_SET_PRESCALER_8;
+            UN_SET_PRESCALER_64;
             RESET_FLAG;
 
             if(counter == ms)
@@ -122,17 +122,18 @@ void wait_ms(uint32_t ms)
     #endif
 
     #if CLOCK_SPEED == 8
+
         static uint32_t counter;
 
         while(1)
         {
             counter++;
-            COM_REG = 1000;
-            SET_PRESCALER_8;
+            COM_REG = 125;
+            SET_PRESCALER_64;
     
             while(!(TIFR_REG & (1 << INTERUPT_FLAG)));
 
-            UN_SET_PRESCALER_8;
+            UN_SET_PRESCALER_64;
             RESET_FLAG;
 
             if(counter == ms)
@@ -150,12 +151,12 @@ void wait_ms(uint32_t ms)
         while(1)
         {
             counter++;
-            COM_REG = 500;
-            SET_PRESCALER_8;
+            COM_REG = 63;
+            SET_PRESCALER_64;
     
             while(!(TIFR_REG & (1 << INTERUPT_FLAG)));
 
-            UN_SET_PRESCALER_8;
+            UN_SET_PRESCALER_64;
             RESET_FLAG;
 
             if(counter == ms)
